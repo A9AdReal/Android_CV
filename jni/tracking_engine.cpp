@@ -60,7 +60,7 @@ bool TrackingEngine::trackAllPoints(const Mat& cFrame, std::vector<Point2f>& out
 		// run tracker
 		tracker.trackPoints(pFrame, points, cFrame, newPoints, status);
 		for (int i = 0; i < (int) (points.size()); i++) {
-			delta.at<float>(i * 2, 0) = newPo ints[i].x - points[i].x;
+			delta.at<float>(i * 2, 0) = newPoints[i].x - points[i].x;
 			delta.at<float>(i * 2 + 1, 0) = newPoints[i].y - points[i].y;
 		}
 

@@ -80,7 +80,6 @@ public class RenderView extends GLSurfaceView {
     }
 
     public void updateVertices(ArrayList<PointF> newPoints){
-    	
         mVertices = newPoints;
         mRenderer.updateCoord(mVertices);
     }

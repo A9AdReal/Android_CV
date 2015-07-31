@@ -52,7 +52,8 @@ obj/local/armeabi-v7a/objs/detection_based_tracker/DetectionBasedTracker_jni.o: 
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video/tracking_c.h \
  jni/corner_detector.hpp \
  jni/a9_com_a9adsrealandroid_VideoRegionSelectActivity.h \
- /Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/jni.h
+ /Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/jni.h \
+ /Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/android/log.h
 
 jni/tracking_engine.hpp:
 
@@ -161,3 +162,5 @@ jni/corner_detector.hpp:
 jni/a9_com_a9adsrealandroid_VideoRegionSelectActivity.h:
 
 /Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/jni.h:
+
+/Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/android/log.h:

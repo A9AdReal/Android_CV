@@ -72,7 +72,7 @@ public class AdsImageRenderer implements Renderer {
                 vertices[ind + 1] = (1.0f - p.y) * mScreenHeight;
             }
         }
-//        Log.e("updated the coords", "points " + Arrays.toString(vertices));
+        Log.e("updated the coords", "points " + Arrays.toString(vertices));
         ByteBuffer bb = ByteBuffer.allocateDirect(vertices.length * 4);
         bb.order(ByteOrder.nativeOrder());
         vertexBuffer = bb.asFloatBuffer();

@@ -1,5 +1,10 @@
 #include "tracking_engine.hpp"
 #include "a9_com_a9adsrealandroid_VideoRegionSelectActivity.h"
+#include <android/log.h>
+
+#define LOG_TAG "AdsRealCV"
+#define LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
+#define LOGE(...)  __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 TrackingEngine engine;
 
@@ -14,17 +19,23 @@ JNIEXPORT jfloatArray JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActi
 		JNIEnv *env, jobject obj, jfloatArray jpoint, jbyteArray jframe, jint width,
 		jint height) {
 
+	int newHeight = height + height / 2;
+
 	// convert point
 	jfloat *iarr = env->GetFloatArrayElements(jpoint, 0);
 	cv::Point2f cvPoint;
-	cvPoint.x = iarr[0]*width;
-	cvPoint.y = iarr[1]*height;
+	cvPoint.x = iarr[1]*width;
+	cvPoint.y = (1-iarr[0])*height;
 
 	// convert array
 	jbyte* jbae = env->GetByteArrayElements(jframe, 0);
-	Mat frame(height + height / 2, width, CV_8UC1, (unsigned char *) jbae);
+	Mat frame(newHeight, width, CV_8UC1, (unsigned char *) jbae);
 	Mat frame_g;
 	cvtColor(frame, frame_g, COLOR_YUV2GRAY_420);
+
+	LOGE("The image size rows: %d, cols: %d", frame_g.rows, frame_g.cols);
+	LOGE("height: %d, width %d", height, width);
+	LOGE("opencv x:%f, y:%f",cvPoint.x, cvPoint.y);
 
 	// ivoke engine
 	cv::Point2f corrected;
@@ -32,8 +43,8 @@ JNIEXPORT jfloatArray JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActi
 
 	// return the array
 	jfloat result[2];
-	result[0]=corrected.x/width;
-	result[1]=corrected.y/height;
+	result[0]=1-corrected.y/height;
+	result[1]=corrected.x/width;
 	jfloatArray newArray = env->NewFloatArray(2);
 	env->SetFloatArrayRegion(newArray, 0, 2, result);
 
@@ -66,13 +77,19 @@ JNIEXPORT jfloatArray JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActi
 	std::vector<Point2f> cvPoints;
 	engine.trackAllPoints(frame_g, cvPoints);
 
-	// return
-	jfloatArray newArray = env->NewFloatArray(cvPoints.size());
-	jfloat *narr = env->GetFloatArrayElements(newArray, 0);
+	// return the array
+	jfloatArray newArray = env->NewFloatArray(cvPoints.size()*2);
+	jfloat *result = new jfloat[cvPoints.size()*2];
 	for (int i = 0; i < cvPoints.size(); i++) {
-		narr[2 * i] = cvPoints[i].x/width;
-		narr[2 * i + 1] = cvPoints[i].y/height;
+		result[2 * i] = 1-cvPoints[i].y/height;
+		result[2 * i + 1] = cvPoints[i].x/width;
 	}
+	env->SetFloatArrayRegion(newArray, 0, cvPoints.size()*2, result);
+
+	// free the memory
+	delete result;
+	env->ReleaseByteArrayElements(jcframe, jbae, 0);
+
 	return newArray;
 }
 

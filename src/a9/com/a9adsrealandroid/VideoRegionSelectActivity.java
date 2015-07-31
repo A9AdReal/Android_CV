@@ -99,9 +99,10 @@ public class VideoRegionSelectActivity extends Activity{
     public native float[] findCornerOnScreen(float[] curP, byte[] preFrame, int width, int height);
 
     public void trackingPoint(byte[] preFrame, byte[] curFrame){
-//        float[] ps = trackingPoint(Utils.objectToArray(mRenderView.getVertices()), preFrame, curFrame, mWidth, mHeight);
-//        Log.e("the return value of postions ", "postion: " + Arrays.toString(ps));
-//        mRenderView.updateVertices(Utils.arrayToObject(ps));
+        float[] ps = trackingPoint(Utils.objectToArray(mRenderView.getVertices()), preFrame, curFrame, mWidth, mHeight);
+        Log.e("the return value of postions ", "postion: " + Arrays.toString(ps));
+        mRenderView.updateVertices(Utils.arrayToObject(ps));
+        mRenderView.pleaseRender();
     }
 
     //TODO implement this

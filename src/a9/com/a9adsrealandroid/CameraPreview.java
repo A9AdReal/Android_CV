@@ -23,7 +23,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private String TAG = this.getClass().getName();
     private VideoRegionSelectActivity mActivity;
     private byte[] mFrameData;
-    private static int timeThres = 200; //in milliseconds
+    private static int timeThres = 50; //in milliseconds
     private static long mPreTime;
 
     public CameraPreview(VideoRegionSelectActivity activity, Camera camera) {
@@ -69,6 +69,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                         mFrameData = data;
                         mActivity.trackingPoint(null, data);
                         mPreTime = curTime;
+                        Log.e("get image parameter ", ""+ camera.getParameters().getPreviewFormat());
                     }
                 }
             });
