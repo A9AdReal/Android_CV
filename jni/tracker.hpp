@@ -21,10 +21,10 @@ public:
 
 public:
 	Tracker() {
-		windowSize = 21;
-		maxLevel = 3;
-		maxIterations = 30;
-		epsilon = 0.01;
+		windowSize = 21;    //21
+		maxLevel = 3;    //3
+		maxIterations = 30;   //30
+		epsilon = 0.01;    //0.01
 		flags = 0 + cv::OPTFLOW_LK_GET_MIN_EIGENVALS;
 		minEigThresh = 0;
 		currPts_ = 0;

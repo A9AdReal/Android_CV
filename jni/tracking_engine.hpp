@@ -16,6 +16,8 @@ public:
 
 	bool addTrackingPoint(const Point2f& point, const Mat& frame, Point2f& corrected);
 	bool trackAllPoints(const Mat& cFrame, std::vector<Point2f>& outPoints);
+	bool trackAllPointsBrutal(const Mat& cFrame, std::vector<Point2f>& outPoints);
+	void resetPoints();
 
 private:
 	CornerDetector detector;

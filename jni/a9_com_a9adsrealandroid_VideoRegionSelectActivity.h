@@ -81,6 +81,14 @@ JNIEXPORT jfloatArray JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActi
 JNIEXPORT void JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActivity_init
   (JNIEnv *, jobject);
 
+/*
+ * Class:     a9_com_a9adsrealandroid_VideoRegionSelectActivity
+ * Method:    resetPoints
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActivity_resetPoints
+(JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

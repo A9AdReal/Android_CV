@@ -1,5 +1,6 @@
-obj/local/armeabi-v7a/objs/detection_based_tracker/corner_detector.o: \
- jni/corner_detector.cpp jni/corner_detector.hpp \
+/Users/Tony/Documents/workspaceec/AdsRealCV/obj/local/armeabi-v7a/objs/detection_based_tracker/corner_detector.o: \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/corner_detector.cpp \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/corner_detector.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/imgproc.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/cvdef.h \
@@ -46,7 +47,7 @@ obj/local/armeabi-v7a/objs/detection_based_tracker/corner_detector.o: \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/imgproc/types_c.h \
  /Users/Tony/tools/ndk/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream
 
-jni/corner_detector.hpp:
+/Users/Tony/Documents/workspaceec/AdsRealCV/jni/corner_detector.hpp:
 
 /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/imgproc.hpp:
 

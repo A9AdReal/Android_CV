@@ -1,5 +1,6 @@
-obj/local/armeabi-v7a/objs/detection_based_tracker/DetectionBasedTracker_jni.o: \
- jni/DetectionBasedTracker_jni.cpp jni/tracking_engine.hpp \
+/Users/Tony/Documents/workspaceec/AdsRealCV/obj/local/armeabi-v7a/objs/detection_based_tracker/DetectionBasedTracker_jni.o: \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/DetectionBasedTracker_jni.cpp \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/tracking_engine.hpp \
  /Users/Tony/tools/ndk/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/cvdef.h \
@@ -42,7 +43,7 @@ obj/local/armeabi-v7a/objs/detection_based_tracker/DetectionBasedTracker_jni.o: 
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/types_c.h \
  /Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/assert.h \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/optim.hpp \
- jni/tracker.hpp \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/tracker.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video/tracking.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/imgproc.hpp \
@@ -50,12 +51,12 @@ obj/local/armeabi-v7a/objs/detection_based_tracker/DetectionBasedTracker_jni.o: 
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/imgproc/types_c.h \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video/background_segm.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video/tracking_c.h \
- jni/corner_detector.hpp \
- jni/a9_com_a9adsrealandroid_VideoRegionSelectActivity.h \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/corner_detector.hpp \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/a9_com_a9adsrealandroid_VideoRegionSelectActivity.h \
  /Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/jni.h \
  /Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/android/log.h
 
-jni/tracking_engine.hpp:
+/Users/Tony/Documents/workspaceec/AdsRealCV/jni/tracking_engine.hpp:
 
 /Users/Tony/tools/ndk/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
 
@@ -141,7 +142,7 @@ jni/tracking_engine.hpp:
 
 /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/core/optim.hpp:
 
-jni/tracker.hpp:
+/Users/Tony/Documents/workspaceec/AdsRealCV/jni/tracker.hpp:
 
 /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video.hpp:
 
@@ -157,9 +158,9 @@ jni/tracker.hpp:
 
 /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video/tracking_c.h:
 
-jni/corner_detector.hpp:
+/Users/Tony/Documents/workspaceec/AdsRealCV/jni/corner_detector.hpp:
 
-jni/a9_com_a9adsrealandroid_VideoRegionSelectActivity.h:
+/Users/Tony/Documents/workspaceec/AdsRealCV/jni/a9_com_a9adsrealandroid_VideoRegionSelectActivity.h:
 
 /Users/Tony/tools/ndk/android-ndk-r10e/platforms/android-8/arch-arm/usr/include/jni.h:
 

@@ -33,9 +33,9 @@ JNIEXPORT jfloatArray JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActi
 	Mat frame_g;
 	cvtColor(frame, frame_g, COLOR_YUV2GRAY_420);
 
-	LOGE("The image size rows: %d, cols: %d", frame_g.rows, frame_g.cols);
-	LOGE("height: %d, width %d", height, width);
-	LOGE("opencv x:%f, y:%f",cvPoint.x, cvPoint.y);
+	//LOGE("The image size rows: %d, cols: %d", frame_g.rows, frame_g.cols);
+	//LOGE("height: %d, width %d", height, width);
+	//LOGE("opencv x:%f, y:%f",cvPoint.x, cvPoint.y);
 
 	// ivoke engine
 	cv::Point2f corrected;
@@ -76,6 +76,7 @@ JNIEXPORT jfloatArray JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActi
 	// invoke engine
 	std::vector<Point2f> cvPoints;
 	engine.trackAllPoints(frame_g, cvPoints);
+	//engine.trackAllPointsBrutal(frame_g, cvPoints);
 
 	// return the array
 	jfloatArray newArray = env->NewFloatArray(cvPoints.size()*2);
@@ -101,4 +102,14 @@ JNIEXPORT jfloatArray JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActi
 JNIEXPORT void JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActivity_init
 (JNIEnv *, jobject) {
 	// do nothing for now
+}
+
+/*
+ * Class:     a9_com_a9adsrealandroid_VideoRegionSelectActivity
+ * Method:    resetPoints
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_a9_com_a9adsrealandroid_VideoRegionSelectActivity_resetPoints
+(JNIEnv *, jobject) {
+	engine.resetPoints();
 }

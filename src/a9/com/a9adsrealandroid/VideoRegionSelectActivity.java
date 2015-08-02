@@ -1,20 +1,21 @@
 package a9.com.a9adsrealandroid;
 
-import a9.com.a9adsrealandroid.util.SystemUiHider;
+import java.util.Arrays;
 
+import a9.com.a9adsrealandroid.util.SystemUiHider;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.PointF;
-import android.os.Bundle;
-import android.util.Log;
 import android.hardware.Camera;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 /**
@@ -33,6 +34,7 @@ public class VideoRegionSelectActivity extends Activity{
     private Button bChooseAds;
     private int mWidth;
     private int mHeight;
+    private static final int CHOOSE_IMAGE = 0x3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +71,21 @@ public class VideoRegionSelectActivity extends Activity{
             @Override
             public void onClick(View view) {
                 mRenderView.resetRegion();
+                resetPoints();
             }
         });
+        
+        //add a choose Ads button
+//        bChooseAds = new Button(this);
+//        bReset.setText("choose Ads");
+//        bReset.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            	takePictureOrChooseFromGallery();
+//            }
+//        });
+        
+        
         //
         GridLayout layoutButton = new GridLayout(this.getApplicationContext());
         layoutButton.setRowCount(1);
@@ -85,13 +100,47 @@ public class VideoRegionSelectActivity extends Activity{
         init();
     }
 
+    
+    public void takePictureOrChooseFromGallery(){
+
+        Intent pickIntent = new Intent();
+        pickIntent.setType("image/*");
+        pickIntent.setAction(Intent.ACTION_GET_CONTENT);
+
+        Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+
+        String pickTitle = "Select or take a new Picture";
+        Intent chooserIntent = Intent.createChooser(pickIntent, pickTitle);
+        chooserIntent.putExtra
+                (
+                        Intent.EXTRA_INITIAL_INTENTS,
+                        new Intent[]{takePhotoIntent}
+                );
+
+//        Continue only if the File was successfully created
+        startActivityForResult(chooserIntent, CHOOSE_IMAGE);
+        
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            Uri selectedImage = data.getData();
+            switch (requestCode) {
+                default:
+                    System.err.println("invalid request code");
+                    break;
+            }
+        }
+    }
 
 
     public PointF findCornerOnScreen(PointF curP){
-        Log.e("the input point is ", "x: " + curP.x + " y: " + curP.y);
+//        Log.e("the input point is ", "x: " + curP.x + " y: " + curP.y);
     	float[] res = findCornerOnScreen(Utils.pointToArray(curP), mCameraPreview.getFrameData(), mWidth, mHeight);
         PointF pR =  Utils.arrayToPoint(res);
-        Log.e("the output point is x: ", + pR.x + " y:" + pR.y);
+//        Log.e("the output point is x: ", + pR.x + " y:" + pR.y);
         return pR;
     }
 
@@ -100,7 +149,7 @@ public class VideoRegionSelectActivity extends Activity{
 
     public void trackingPoint(byte[] preFrame, byte[] curFrame){
         float[] ps = trackingPoint(Utils.objectToArray(mRenderView.getVertices()), preFrame, curFrame, mWidth, mHeight);
-        Log.e("the return value of postions ", "postion: " + Arrays.toString(ps));
+//        Log.e("the return value of postions ", "postion: " + Arrays.toString(ps));
         mRenderView.updateVertices(Utils.arrayToObject(ps));
         mRenderView.pleaseRender();
     }
@@ -108,6 +157,9 @@ public class VideoRegionSelectActivity extends Activity{
     //TODO implement this
     public native float[] trackingPoint(float[] curPs, byte[] preFrame, byte[] curFrame, int width, int height);
 
+    
+    public native void resetPoints();
+    
 
     //TODO impliment this
     public native void init();

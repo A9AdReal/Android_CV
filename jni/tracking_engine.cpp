@@ -19,7 +19,8 @@ TrackingEngine::TrackingEngine() {
 	points.clear();
 }
 
-bool TrackingEngine::addTrackingPoint(const Point2f& point, const Mat& frame, Point2f& corrected) {
+bool TrackingEngine::addTrackingPoint(const Point2f& point, const Mat& frame,
+		Point2f& corrected) {
 	if (points.size() >= 4)
 		return false;
 
@@ -32,11 +33,14 @@ bool TrackingEngine::addTrackingPoint(const Point2f& point, const Mat& frame, Po
 	KF.statePost.at<float>(2 * i, 0) = corrected.x;
 	KF.statePost.at<float>(2 * i + 1, 0) = corrected.y;
 
+	// update frame
+	pFrame = frame.clone();
+	isFirstFrame = false;
 	return true;
 }
 
-bool TrackingEngine::trackAllPoints(const Mat& cFrame, std::vector<Point2f>& outPoints)
-{
+bool TrackingEngine::trackAllPoints(const Mat& cFrame,
+		std::vector<Point2f>& outPoints) {
 	// check first frame
 	if (isFirstFrame) {
 		isFirstFrame = false;
@@ -49,12 +53,12 @@ bool TrackingEngine::trackAllPoints(const Mat& cFrame, std::vector<Point2f>& out
 	if (points.size() == 0)
 		return true;
 
-	std::vector<Point2f> newPoints = points;
-	std::vector<uchar> status;
+	std::vector < Point2f > newPoints = points;
+	std::vector < uchar > status;
 	outPoints = points;
 
-	Mat delta = Mat::zeros(cv::Size(1,8),CV_32F);
-	Mat measure = Mat::zeros(cv::Size(1,8),CV_32F);
+	Mat delta = Mat::zeros(cv::Size(1, 8), CV_32F);
+	Mat measure = Mat::zeros(cv::Size(1, 8), CV_32F);
 
 	if (count < 20) {
 		// run tracker
@@ -92,4 +96,30 @@ bool TrackingEngine::trackAllPoints(const Mat& cFrame, std::vector<Point2f>& out
 	pFrame = cFrame.clone();
 
 	return true;
+}
+
+bool TrackingEngine::trackAllPointsBrutal(const Mat& cFrame,
+		std::vector<Point2f>& outPoints) {
+	// check first frame
+	if (isFirstFrame) {
+		isFirstFrame = false;
+		pFrame = cFrame.clone();
+		outPoints = points;
+		return true;
+	}
+
+	// check point size
+	if (points.size() == 0)
+		return true;
+
+	std::vector < uchar > status;
+
+	tracker.trackPoints(pFrame, points, cFrame, outPoints, status);
+}
+
+void TrackingEngine::resetPoints() {
+	points.clear();
+	KF.statePost = Mat::zeros(cv::Size(1, 8), CV_32F);
+	KF.statePre = Mat::zeros(cv::Size(1, 8), CV_32F);
+	count = 0;
 }

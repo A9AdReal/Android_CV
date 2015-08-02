@@ -72,7 +72,7 @@ public class AdsImageRenderer implements Renderer {
                 vertices[ind + 1] = (1.0f - p.y) * mScreenHeight;
             }
         }
-        Log.e("updated the coords", "points " + Arrays.toString(vertices));
+//        Log.e("updated the coords", "points " + Arrays.toString(vertices));
         ByteBuffer bb = ByteBuffer.allocateDirect(vertices.length * 4);
         bb.order(ByteOrder.nativeOrder());
         vertexBuffer = bb.asFloatBuffer();
@@ -102,7 +102,7 @@ public class AdsImageRenderer implements Renderer {
         // Enable generic vertex attribute array
         GLES20.glEnableVertexAttribArray ( mTexCoordLoc );
 
-        // Prepare the texturecoordinates
+        // Prepare the texture coordinates
         GLES20.glVertexAttribPointer(mTexCoordLoc, 2, GLES20.GL_FLOAT,
                 false,
                 0, uvBuffer);
@@ -165,7 +165,7 @@ public class AdsImageRenderer implements Renderer {
         // Create the triangles
         SetupTriangle();
         // Create the image information
-        SetupImage();
+        SetupImage(true, null);
 
         // Set the clear color to black
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -185,7 +185,7 @@ public class AdsImageRenderer implements Renderer {
         GLES20.glUseProgram(AdRealShader.sp_Image);
     }
 
-    public void SetupImage()
+    public void SetupImage(boolean isInitm, Bitmap image)
     {
         // Create our UV coordinates.
         uvs = new float[] {
@@ -208,8 +208,12 @@ public class AdsImageRenderer implements Renderer {
 
         // Retrieve our image from resources
         // Temporary create a bitmap
-        Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.sample);
-
+        Bitmap bmp;
+        if(isInitm){
+        	bmp = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.a9logo);
+        }else{
+        	bmp = image;
+        }
         // Bind texture to texture name
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texturenames[0]);
@@ -220,12 +224,14 @@ public class AdsImageRenderer implements Renderer {
 
         // Load the bitmap into the bound texture.
         GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bmp, 0);
-
+        
         // We are done using the bitmap so we should recycle it.
         bmp.recycle();
 
     }
 
+    
+    
     public void SetupTriangle()
     {
         // We have to create the vertices of our triangle.

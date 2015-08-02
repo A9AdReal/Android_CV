@@ -1,7 +1,7 @@
-obj/local/armeabi-v7a/objs/detection_based_tracker/tracker.o: \
- jni/tracker.cpp \
+/Users/Tony/Documents/workspaceec/AdsRealCV/obj/local/armeabi-v7a/objs/detection_based_tracker/tracker.o: \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/tracker.cpp \
  /Users/Tony/tools/ndk/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream \
- jni/tracker.hpp \
+ /Users/Tony/Documents/workspaceec/AdsRealCV/jni/tracker.hpp \
  /Users/Tony/tools/ndk/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video.hpp \
  /Users/Tony/tools/OpenCV-android-sdk/sdk/native/jni/include/opencv2/video/tracking.hpp \
@@ -43,7 +43,7 @@ obj/local/armeabi-v7a/objs/detection_based_tracker/tracker.o: \
 
 /Users/Tony/tools/ndk/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/iostream:
 
-jni/tracker.hpp:
+/Users/Tony/Documents/workspaceec/AdsRealCV/jni/tracker.hpp:
 
 /Users/Tony/tools/ndk/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include/vector:
 
